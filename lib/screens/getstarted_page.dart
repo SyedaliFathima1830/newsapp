@@ -12,11 +12,11 @@ class _GetstartedPageState extends State<GetstartedPage> {
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme.primary;
-
+    final double screenHeight = MediaQuery.of(context).size.height * 0.85;
     return Scaffold(
       body: Column(
         children: [
-          const CarouselWithDots(),
+          SizedBox(height: screenHeight, child: CarouselWithDots()),
           OutlinedButton(
               onPressed: () {},
               style: OutlinedButton.styleFrom(
