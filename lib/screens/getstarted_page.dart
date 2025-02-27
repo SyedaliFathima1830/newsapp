@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_new_project/screens/home_page.dart';
 import 'package:my_new_project/widgets/carousel_with_dots.dart';
 
 class GetstartedPage extends StatefulWidget {
@@ -12,38 +14,36 @@ class _GetstartedPageState extends State<GetstartedPage> {
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme.primary;
-
+    final double screenHeight = MediaQuery.of(context).size.height * 0.65;
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const CarouselWithDots(),
-          OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                  backgroundColor: themeColor,
-                  textStyle: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
-              child: const Text(
-                "Sign up with Email",
-              )),
-          const Row(
-            children: [
-              Text(
-                "Already have an account?",
-                style: TextStyle(color: const Color.fromARGB(255, 80, 78, 78)),
-              ),
-              Text(
-                "Login",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ],
+          SizedBox(height: screenHeight, child: CarouselWithDots()),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+            child: OutlinedButton(
+                onPressed: () {
+                  onTap:
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()));
+                  };
+                },
+                style: OutlinedButton.styleFrom(
+                    backgroundColor: themeColor,
+                    textStyle: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+                child: Text(
+                  "Getting Started",
+                  style: GoogleFonts.ptSans(
+                      textStyle:
+                          const TextStyle(color: Colors.white, fontSize: 14)),
+                )),
           ),
-          const Text(
-            "Skip For Now",
-            style: TextStyle(
-                color: Color.fromARGB(255, 99, 95, 95),
-                decoration: TextDecoration.underline),
-          )
         ],
       ),
     );
