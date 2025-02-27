@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:my_new_project/widgets/single_image_card.dart'; // Import the SingleImageCard widget
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_new_project/widgets/single_image_card.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart'; // Import the SingleImageCard widget
 
 class CarouselWithDots extends StatefulWidget {
   const CarouselWithDots({super.key});
@@ -68,22 +69,27 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
           ),
         ),
         const SizedBox(height: 10),
-        Text(
-          titles[currentPage],
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            titles[currentPage],
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            )),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             subtitles[currentPage],
-            style: const TextStyle(
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
-            ),
+            )),
             textAlign: TextAlign.center,
           ),
         ),
