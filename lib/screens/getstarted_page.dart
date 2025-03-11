@@ -20,7 +20,7 @@ class _GetstartedPageState extends State<GetstartedPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: screenHeight, child: CarouselWithDots()),
+          SizedBox(height: screenHeight, child: const CarouselWithDots()),
           Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 20),
             child: OutlinedButton(
@@ -28,7 +28,7 @@ class _GetstartedPageState extends State<GetstartedPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => BottomNavigationLayout()));
+                          builder: (context) => const BottomNavigationLayout()));
                 },
                 style: OutlinedButton.styleFrom(
                     backgroundColor: themeColor,

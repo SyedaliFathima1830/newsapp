@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_new_project/screens/discover_page.dart';
 import 'package:my_new_project/screens/home_page.dart';
 
 class BottomNavigationLayout extends StatefulWidget {
@@ -14,7 +15,7 @@ class _BottomNavigationLayoutState extends State<BottomNavigationLayout> {
   // Screens for each tab
   final List<Widget> _screens = [
     const HomePage(),
-    const DiscoverScreen(),
+    DiscoverScreen(),
     const SavedScreen(),
     const AccountScreen(),
   ];
@@ -44,16 +45,6 @@ class _BottomNavigationLayoutState extends State<BottomNavigationLayout> {
         ],
       ),
     );
-  }
-}
-
-class DiscoverScreen extends StatelessWidget {
-  const DiscoverScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-        child: Text("Discover Screen", style: TextStyle(fontSize: 24)));
   }
 }
 
