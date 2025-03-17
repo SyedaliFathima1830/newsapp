@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class NewsFeedCard extends StatelessWidget {
+class NewsFeedCard extends StatefulWidget {
   final String image;
   final String category;
   final String title;
   final String date;
   final String author;
+  final bool isSavedItems;
 
   const NewsFeedCard({
     super.key,
@@ -14,16 +15,23 @@ class NewsFeedCard extends StatelessWidget {
     required this.title,
     required this.date,
     required this.author,
+    required this.isSavedItems,
   });
 
+  @override
+  State<NewsFeedCard> createState() => _NewsFeedCardState();
+}
+
+class _NewsFeedCardState extends State<NewsFeedCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding:
-            const EdgeInsets.all(8.0), // Increased padding for better spacing
+        padding: widget.isSavedItems == true
+            ? const EdgeInsets.only(top: 15.0)
+            : const EdgeInsets.all(8.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -31,15 +39,16 @@ class NewsFeedCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                image,
-                width: 50, // Slightly larger for better visibility
-                height: 50,
+                widget.image,
+                width: widget.isSavedItems == true ? 70 : 50,
+                height:
+                    widget.isSavedItems ? 100 : 50, // Increase height if saved
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     'assets/png/newsfeedlist.png',
                     width: 50,
-                    height: 50,
+                    height: widget.isSavedItems ? 100 : 50,
                     fit: BoxFit.cover,
                   );
                 },
@@ -54,7 +63,7 @@ class NewsFeedCard extends StatelessWidget {
                 children: [
                   // Category
                   Text(
-                    category.toUpperCase(),
+                    widget.category.toUpperCase(),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -65,7 +74,7 @@ class NewsFeedCard extends StatelessWidget {
 
                   // News Title
                   Text(
-                    title,
+                    widget.title,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -75,23 +84,22 @@ class NewsFeedCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
 
-                  // Author & Date Row (Aligned to opposite corners)
+                  // Author & Date Row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Text(
-                          author,
+                          widget.author,
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
                           ),
-                          overflow:
-                              TextOverflow.ellipsis, // Handle long author names
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       Text(
-                        date,
+                        widget.date,
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
@@ -102,6 +110,13 @@ class NewsFeedCard extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Three vertical dots if isSavedItems is true
+            if (widget.isSavedItems)
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Icon(Icons.more_vert, color: Colors.grey),
+              ),
           ],
         ),
       ),

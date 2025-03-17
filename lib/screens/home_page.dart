@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_new_project/widgets/hightlights_card.dart';
 import 'package:my_new_project/widgets/newsfeed_card.dart';
+import 'package:my_new_project/widgets/view_profile_image.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,13 +23,25 @@ class _HomePageState extends State<HomePage> {
             const Text("App Name"),
           ],
         ),
-        actions: const [
-          CircleAvatar(
-            radius: 20,
-            backgroundImage:
-                AssetImage('assets/profile.jpg'), // Dummy profile image
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ViewProfileImage(
+                    profilePic: "assets/png/profile.jpg",
+                  ),
+                ),
+              );
+            },
+            child: const CircleAvatar(
+              radius: 20,
+              backgroundImage:
+                  AssetImage('assets/png/profile.jpg'), // Dummy profile image
+            ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
         ],
       ),
       body: SingleChildScrollView(
@@ -49,82 +63,27 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 16),
 
             // News Card
+            //call here
+            const SizedBox(height: 20),
             SizedBox(
               height: MediaQuery.of(context).size.height / 4,
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        'assets/news_image.jpg', // Replace with your asset
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          // ✅ Handles missing image error
-                          return Container(
-                            color: Colors.grey,
-                            child: const Center(
-                              child: Text("Image Not Found",
-                                  style: TextStyle(color: Colors.white)),
-                            ),
-                          );
-                        },
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: HightlightsCard(
+                        newsTitle: "dummy title",
+                        description: "dummy text",
                       ),
                     ),
-                    // Overlay for better text visibility
-                    Positioned.fill(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.7),
-                              Colors.transparent
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    // News Heading & Button
-                    Positioned(
-                      left: 16,
-                      bottom: 16,
-                      right: 16,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Breaking News Headline",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            "A short description of the news...",
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          const SizedBox(height: 8),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                            ),
-                            child: const Text("Read More ->"),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
-            const SizedBox(height: 20), // ✅ Extra space at the bottom
 
             const Text(
               "Picked For You",
@@ -140,6 +99,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 // final news = 1;
                 return const NewsFeedCard(
+                    isSavedItems: false,
                     image: "no imahe",
                     category: "sports",
                     title: "fth ufrg h gg titile ooooo",

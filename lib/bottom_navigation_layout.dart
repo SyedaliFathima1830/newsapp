@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_new_project/screens/account_screen.dart';
 import 'package:my_new_project/screens/discover_page.dart';
 import 'package:my_new_project/screens/home_page.dart';
+import 'package:my_new_project/screens/saved_news.dart';
 
 class BottomNavigationLayout extends StatefulWidget {
   const BottomNavigationLayout({super.key});
@@ -16,7 +18,7 @@ class _BottomNavigationLayoutState extends State<BottomNavigationLayout> {
   final List<Widget> _screens = [
     const HomePage(),
     DiscoverScreen(),
-    const SavedScreen(),
+    const SavedNews(),
     const AccountScreen(),
   ];
   @override
@@ -45,25 +47,5 @@ class _BottomNavigationLayoutState extends State<BottomNavigationLayout> {
         ],
       ),
     );
-  }
-}
-
-class SavedScreen extends StatelessWidget {
-  const SavedScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-        child: Text("Saved Screen", style: TextStyle(fontSize: 24)));
-  }
-}
-
-class AccountScreen extends StatelessWidget {
-  const AccountScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-        child: Text("Profile Screen", style: TextStyle(fontSize: 24)));
   }
 }
