@@ -12,32 +12,31 @@ NewsApp is a modern and user-friendly mobile application designed to deliver an 
 - **Save & Share Options**: Users can bookmark articles for later reading and share news through different platforms.
 
 ## **UI Screens**
-### **Landing page **
+### **Landing page**
 Auto scrolls images.
 
-![landing page](assets/app_screenshots/gettingstarted.jpeg)
+<img src="assets/app_screenshots/gettingstarted.jpeg" width="300",  />
 
 ### **Home Screen**
 Displays the latest news articles with category tabs.
 
-![Home Screen](assets/app_screenshots/home.jpeg)
+<img src="assets/app_screenshots/home.jpeg" width="300" />
 
 ### **Category Selection**
 Filter news by different topics.
 
-![Category Selection](assets/app_screenshots/discover.jpeg)
+<img src="assets/app_screenshots/discover.jpeg" width="300" />
 
 ### **News Detail Screen**
 Shows the full article with images and related information.
 
-![News Detail Screen](assets/app_screenshots/view.jpeg)
+<img src="assets/app_screenshots/view.jpeg" width="300" />
 
 ### **Profile & Settings**
 Manage preferences such as theme selection.
 
-![Profile & Settings](assets/app_screenshots/myaccount.jpeg)
-![ view profile](assets/app_screenshots/profileimage.jpeg)
-
+<img src="assets/app_screenshots/myaccount.jpeg" width="300" />
+<img src="assets/app_screenshots/profileimage.jpeg" width="300" />
 
 ## **Features**
 - **Category Filtering**
