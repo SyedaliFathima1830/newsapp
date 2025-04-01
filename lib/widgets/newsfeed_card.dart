@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_new_project/screens/view_news.dart';
 
 class NewsFeedCard extends StatefulWidget {
   final String image;
@@ -25,99 +26,106 @@ class NewsFeedCard extends StatefulWidget {
 class _NewsFeedCardState extends State<NewsFeedCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: widget.isSavedItems == true
-            ? const EdgeInsets.only(top: 15.0)
-            : const EdgeInsets.all(8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // News Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                widget.image,
-                width: widget.isSavedItems == true ? 70 : 50,
-                height:
-                    widget.isSavedItems ? 100 : 50, // Increase height if saved
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    'assets/png/newsfeedlist.png',
-                    width: 50,
-                    height: widget.isSavedItems ? 100 : 50,
-                    fit: BoxFit.cover,
-                  );
-                },
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ViewNewsScreen()));
+      },
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: widget.isSavedItems == true
+              ? const EdgeInsets.only(top: 15.0)
+              : const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // News Image
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  widget.image,
+                  width: widget.isSavedItems == true ? 70 : 50,
+                  height: widget.isSavedItems
+                      ? 100
+                      : 50, // Increase height if saved
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      'assets/png/newsfeedlist.png',
+                      width: 50,
+                      height: widget.isSavedItems ? 100 : 50,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
               ),
-            ),
-            const SizedBox(width: 12),
+              const SizedBox(width: 12),
 
-            // News Details (Expanded to take remaining space)
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Category
-                  Text(
-                    widget.category.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
+              // News Details (Expanded to take remaining space)
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Category
+                    Text(
+                      widget.category.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
+                    const SizedBox(height: 4),
 
-                  // News Title
-                  Text(
-                    widget.title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                    // News Title
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
+                    const SizedBox(height: 4),
 
-                  // Author & Date Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          widget.author,
+                    // Author & Date Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.author,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Text(
+                          widget.date,
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
                           ),
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      Text(
-                        widget.date,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            // Three vertical dots if isSavedItems is true
-            if (widget.isSavedItems)
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Icon(Icons.more_vert, color: Colors.grey),
-              ),
-          ],
+              // Three vertical dots if isSavedItems is true
+              if (widget.isSavedItems)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Icon(Icons.more_vert, color: Colors.grey),
+                ),
+            ],
+          ),
         ),
       ),
     );
