@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_new_project/screens/home_page.dart';
+import 'package:my_new_project/bottom_navigation_layout.dart';
 import 'package:my_new_project/widgets/carousel_with_dots.dart';
 
 class GetstartedPage extends StatefulWidget {
@@ -20,18 +20,15 @@ class _GetstartedPageState extends State<GetstartedPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: screenHeight, child: CarouselWithDots()),
+          SizedBox(height: screenHeight, child: const CarouselWithDots()),
           Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 20),
             child: OutlinedButton(
                 onPressed: () {
-                  onTap:
-                  () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  };
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BottomNavigationLayout()));
                 },
                 style: OutlinedButton.styleFrom(
                     backgroundColor: themeColor,
